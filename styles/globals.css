@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: "Lato", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -14,7 +14,7 @@
     color-scheme: dark;
   }
   body {
-    color: white;
-    background: black;
+    background-color: #161616;
+    color: #eee;
   }
 }

@@ -1,0 +1,137 @@
+.container {
+  animation: show-container 9s ease-in-out forwards;
+  transition: 2s linear;
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  animation: fill 1s 5s linear forwards;
+}
+
+@media (min-width: 768px) {
+  .logo {
+    width: 100%;
+  }
+}
+
+.path1 {
+  stroke-dasharray: 717;
+  stroke-dashoffset: 717;
+  animation: line-animation 3s ease forwards;
+}
+.path2 {
+  stroke-dasharray: 380;
+  stroke-dashoffset: 380;
+  animation: line-animation 3s ease forwards 0.25s;
+}
+.path3 {
+  stroke-dasharray: 212;
+  stroke-dashoffset: 212;
+  animation: line-animation 3s ease forwards 0.5s;
+}
+.path4 {
+  stroke-dasharray: 272;
+  stroke-dashoffset: 272;
+  animation: line-animation 3s ease forwards 0.75s;
+}
+.path5 {
+  stroke-dasharray: 348;
+  stroke-dashoffset: 348;
+  animation: line-animation 3s ease forwards 1s;
+}
+.path6 {
+  stroke-dasharray: 526;
+  stroke-dashoffset: 526;
+  animation: line-animation 3s ease forwards 1.25s;
+}
+.path7 {
+  stroke-dasharray: 381;
+  stroke-dashoffset: 381;
+  animation: line-animation 3s ease forwards 1.5s;
+}
+.path8 {
+  stroke-dasharray: 277;
+  stroke-dashoffset: 277;
+  animation: line-animation 3s ease forwards 1.75s;
+}
+.path9 {
+  stroke-dasharray: 348;
+  stroke-dashoffset: 348;
+  animation: line-animation 3s ease forwards 2s;
+}
+.path10 {
+  stroke-dasharray: 248;
+  stroke-dashoffset: 248;
+  animation: line-animation 3s ease forwards 2.25s;
+}
+.path11 {
+  stroke-dasharray: 348;
+  stroke-dashoffset: 348;
+  animation: line-animation 3s ease forwards 2.5s;
+}
+.path12 {
+  stroke-dasharray: 342;
+  stroke-dashoffset: 342;
+  animation: line-animation 3s ease forwards 2.75s;
+}
+.path13 {
+  stroke-dasharray: 369;
+  stroke-dashoffset: 369;
+  animation: line-animation 3s ease forwards 3s;
+}
+.path14 {
+  stroke-dasharray: 290;
+  stroke-dashoffset: 290;
+  animation: line-animation 3s ease forwards 3.25s;
+}
+.path15 {
+  stroke-dasharray: 717;
+  stroke-dashoffset: 717;
+  animation: line-animation 3s ease forwards 3.5s;
+}
+
+@keyframes line-animation {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes show-container {
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fill {
+  from {
+    fill: transparent;
+  }
+  to {
+    fill: white;
+  }
+}
+
+.exploreBtn {
+  z-index: 20;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1a1a1a;
+  @apply px-4 py-2 rounded-full hover:bg-[#333];
+}
+
+.hideContainer {
+  opacity: 0;
+  visibility: hidden;
+}

@@ -12,12 +12,18 @@ const nextConfig = (phase) => {
         mongodb_database: "journal-dev",
         nextauth_url: "http://localhost:3000",
       },
+      images: {
+        domains: ["platform-lookaside.fbsbx.com", "lh3.googleusercontent.com"],
+      },
     };
   }
 
   return {
     reactStrictMode: true,
     swcMinify: true,
+    images: {
+      domains: ["platform-lookaside.fbsbx.com", "lh3.googleusercontent.com"],
+    },
     env: {
       mongodb_username: "journal-boi",
       mongodb_password: "a7eqfTKEOjq5KMu3",

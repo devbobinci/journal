@@ -1,0 +1,20 @@
+.welcomeTitle {
+  animation: welcome 3s ease-in-out forwards;
+  @apply text-5xl;
+}
+
+@keyframes welcome {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}

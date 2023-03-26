@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { MdErrorOutline } from "react-icons/md";
@@ -53,7 +53,7 @@ export default function AuthField({
           >
             {content}
           </label>
-          <div className={`${id !== "email" ? "flex items-center" : ""} `}>
+          <div className={`${id !== "email" ? "flex items-center" : ""}`}>
             <input
               type={showPassword ? "text" : type}
               id={id}
@@ -81,7 +81,7 @@ export default function AuthField({
         </div>
       </div>
       {errors && touched && (
-        <div className="ml-3 text-red-400 text-sm mt-1 text-left flex items-center gap-1">
+        <div className="ml-2 text-red-400 text-sm mt-1 text-left flex items-center gap-1">
           <MdErrorOutline className="text-base" /> {errors}
         </div>
       )}

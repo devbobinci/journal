@@ -8,19 +8,19 @@ import { motion as m } from "framer-motion";
 import { useFormik } from "formik";
 import ValidationSchema from "./ValidationSchema";
 
-import { createUser } from "./CreateUser";
 import IsLoginContext from "../../context/IsLoginProvider";
 import AuthLayout from "../layout/AuthLayout";
 import AuthField from "./AuthField";
 import AuthTitle, { variants } from "./AuthTitle";
 import AuthButtons from "./AuthButtons";
+import { createUser } from "./CreateUser";
 
 export default function AuthForm() {
   const [loading, setLoading] = useState(false);
   const [loadingGoogle, setLoadingGoogle] = useState(false);
+  const [fbLoading, setFbLoading] = useState(false);
 
-  const isLoginContext = useContext(IsLoginContext);
-  const { isLogin, setIsLogin } = isLoginContext;
+  const { isLogin, setIsLogin } = useContext(IsLoginContext);
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -31,10 +31,14 @@ export default function AuthForm() {
 
   const router = useRouter();
 
-  useEffect(() => {
+  function formikCleanUp() {
     formik.setFieldValue("email", "");
     formik.setFieldValue("password", "");
     formik.setFieldValue("passwordConfirmation", "");
+  }
+
+  useEffect(() => {
+    formikCleanUp();
     formik.setTouched((prev) => !prev);
   }, [isLogin]);
 
@@ -59,16 +63,17 @@ export default function AuthForm() {
 
         if (!result.error) {
           // Style utwierdzajace uzytkownika ze jest wszystko OK
-          toast.dismiss();
-          toast.success("Logged In!", { duration: 1500 });
+
           setTimeout(() => {
+            toast.dismiss();
+            toast.success("Logged In!", { duration: 1500 });
             router.push("/");
-            setLoading(false);
-          }, 1500);
+          }, 1600);
+
+          formikCleanUp();
         } else {
           toast.error(result.error);
-          formik.setFieldValue("email", "");
-          formik.setFieldValue("password", "");
+          formikCleanUp();
           formik.setTouched((prev) => !prev);
           setLoading(false);
         }
@@ -79,13 +84,14 @@ export default function AuthForm() {
 
           setTimeout(() => {
             setIsLogin((prev) => !prev);
-            formik.setFieldValue("email", "");
-            formik.setFieldValue("password", "");
-            formik.setFieldValue("passwordConfirmation", "");
+            formikCleanUp();
+
             setLoading(false);
           }, 1600);
         } catch (err) {
           setLoading(false);
+          formikCleanUp();
+
           console.log(err.message);
           formik.setTouched((prev) => !prev);
         }
@@ -117,15 +123,16 @@ export default function AuthForm() {
           isLogin={isLogin}
           loading={loading}
           loadingGoogle={loadingGoogle}
+          fbLoading={fbLoading}
         />
         <form onSubmit={formik.handleSubmit} className="text-center">
-          {!loadingGoogle && !loading && (
+          {!loadingGoogle && !loading && !fbLoading && (
             <m.div
               initial="initial"
               animate="animate"
               variants={variants}
               transition={{ duration: 0.4 }}
-              className="py-4"
+              className="pt-4"
             >
               <m.div
                 key={isLogin}
@@ -191,6 +198,7 @@ export default function AuthForm() {
                         touched={formik.touched.passwordConfirmation}
                         formik={formik}
                       />
+                      <br />
                     </>
                   )}
               </m.div>
@@ -203,6 +211,8 @@ export default function AuthForm() {
             variants={variants}
             setLoadingGoogle={setLoadingGoogle}
             setIsLogin={setIsLogin}
+            fbLoading={fbLoading}
+            setFbLoading={setFbLoading}
           />
         </form>
       </m.section>

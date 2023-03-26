@@ -1,5 +1,4 @@
 import { motion as m } from "framer-motion";
-import AuthTitleLoader from "./AuthTitleLoader";
 
 export const variants = {
   initial: { y: 25, opacity: 0 },
@@ -7,7 +6,12 @@ export const variants = {
   exit: { y: -25, opacity: 0 },
 };
 
-export default function AuthTitle({ isLogin, loading, loadingGoogle }) {
+export default function AuthTitle({
+  isLogin,
+  loading,
+  loadingGoogle,
+  fbLoading,
+}) {
   return (
     <m.h1
       key={isLogin}
@@ -16,25 +20,22 @@ export default function AuthTitle({ isLogin, loading, loadingGoogle }) {
       animate="animate"
       transition={{ duration: 0.4, delay: 0.15 }}
       className={`${
-        loading || loadingGoogle ? "mb-0 text-3xl" : "mb-4"
+        loading || loadingGoogle || fbLoading ? "mb-0 text-3xl" : "mb-4"
       } text-4xl  text-center flex justify-center`}
     >
       {isLogin ? (
         <>
-          {loading && <AuthTitleLoader loader={loading} text="Logging in" />}
-          {loadingGoogle && (
-            <AuthTitleLoader loader={loadingGoogle} text="Logging in" />
-          )}
-
-          {!loading && !loadingGoogle && "Log In"}
+          {loading && <span className="mb-4">Logging in...</span>}
+          {loadingGoogle && <span className="mb-4">Logging in...</span>}
+          {fbLoading && <span className="mb-4">Logging in...</span>}
+          {!loading && !loadingGoogle && !fbLoading && "Log In"}
         </>
       ) : (
         <>
-          {loading && <AuthTitleLoader loader={loading} text="Signing in" />}
-          {loadingGoogle && (
-            <AuthTitleLoader loader={loadingGoogle} text="Signing in" />
+          {!loading && !loadingGoogle && !fbLoading && "Sign In"}
+          {loading && !loadingGoogle && !fbLoading && (
+            <span className="mb-4">Signing up...</span>
           )}
-          {!loading && !loadingGoogle && "Sign In"}
         </>
       )}
     </m.h1>
